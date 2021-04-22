@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/recommended/tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "jsx": "react",
+    "outDir": "build",
+    "rootDir": "src",
+    "sourceMap": true
+  }
+}
