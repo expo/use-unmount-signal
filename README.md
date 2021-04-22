@@ -29,6 +29,17 @@ function Example() {
 
 ### With async function event handlers
 
+[The HTML5 specification says](https://dom.spec.whatwg.org/#abortsignal-abort-algorithms):
+
+> Any web platform API using promises to represent operations that can be aborted must adhere to the following:
+> 
+> * Accept `AbortSignal` objects through a `signal` dictionary member.
+> * Convey that the operation got aborted by rejecting the promise with an "`AbortError`" `DOMException`.
+> * Reject immediately if the `AbortSignal`'s aborted flag is already set, otherwise:
+> * Use the abort algorithms mechanism to observe changes to the `AbortSignal` object and do so in a manner that does not lead to clashes with other observers.
+
+Calling any async function creates a promise. Therefore, authors of async functions need to follow the above guidance to write abortable functions.
+
 ```jsx
 import { useState } from 'react';
 import useUnmountSignal from 'use-unmount-signal';
