@@ -1,4 +1,4 @@
-# use-unmount-signal
+# use-unmount-signal [![Tests](https://github.com/expo/use-unmount-signal/actions/workflows/tests.yml/badge.svg)](https://github.com/expo/use-unmount-signal/actions/workflows/tests.yml) [![codecov](https://codecov.io/gh/expo/use-unmount-signal/branch/main/graph/badge.svg?token=6YVSvvk4zB)](https://codecov.io/gh/expo/use-unmount-signal)
 
 `useUnmountSignal` is a React Hook to cancel promises when a component is unmounted. It uses [the W3C-standard `AbortSignal` API](https://dom.spec.whatwg.org/#interface-AbortSignal) to notify compatible promises when the calling component is unmounted.
 
