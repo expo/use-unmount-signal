@@ -4,8 +4,9 @@
   "description": "A React Hook to cancel promises when a component is unmounted",
   "main": "build/use-unmount-signal.js",
   "scripts": {
-    "build": "tsc",
-    "prepare": "rm -rf build && tsc",
+    "build": "./build.sh",
+    "clean": "rm -rf build",
+    "prepare": "rm -rf build && ./build.sh",
     "test": "jest"
   },
   "repository": {
