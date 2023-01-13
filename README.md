@@ -48,19 +48,22 @@ function Example() {
   const unmountSignal = useUnmountSignal();
   const [status, setStatus] = useState('ready');
 
-  async function handleClick({ signal }) {
-    if (signal.aborted) { throw new AbortError(); }
+  const handleClick = useCallback(
+    async () => {
+      if (unmountSignal.aborted) { throw new AbortError(); }
 
-    const response = await fetch('https://ping.example.com', { signal });
-    if (signal.aborted) { throw new AbortError(); }
+      const response = await fetch('https://ping.example.com', { signal: unmountSignal });
+      if (unmountSignal.aborted) { throw new AbortError(); }
 
-    // We are guaranteed that the component is still mounted at this point
-    if (response.ok) {
-      setState('OK');
-    } else {
-      setState(response.status);
-    }
-  }
+      // We are guaranteed that the component is still mounted at this point
+      if (response.ok) {
+        setStatus('OK');
+      } else {
+        setStatus(response.status);
+      }
+    },
+    [unmountSignal, setStatus]
+  );
 
   return <button onClick={handleClick}>Ping {status}</button>;
 }
