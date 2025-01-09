@@ -8,14 +8,10 @@ jobs:
         node-version: [14.x, 16.x]
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Cache Node.js modules
-      uses: actions/cache@v2
-      with:
-        path: ${{ github.workspace }}/node_modules
-        key: ${{ runner.OS }}-${{ matrix.node-version}}-node_modules-${{ hashFiles('yarn.lock') }}
+        cache: yarn
     - run: yarn --frozen-lockfile
     - run: yarn test --coverage
     - name: Create coverage report flag
